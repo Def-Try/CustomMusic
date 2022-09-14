@@ -6,9 +6,10 @@ certain gamemodes and situations
 Go to /music directory, and put your music 
 into one of following directories:
 sandbox, attack, survival, pvp -> plays in 
-  gamemodes
-general -> plays if music was not found
-boss -> plays if boss has spawned
+  gamemodes;
+general -> plays if music for gamemode
+was not found;
+boss -> plays if boss has spawned;
 # TODO
 waves music(/wawes)
 editor and menu music("/editor,/menu"
