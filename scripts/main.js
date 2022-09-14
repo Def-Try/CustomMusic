@@ -108,7 +108,7 @@ Events.on(ClientLoadEvent, () => {
 		playing = Vars.state.isGame(); // some checks
 		paused = Vars.state.isGame() && Core.scene.hasDialog();
 		if (paused) {
-			Core.audio.musicBus.setFilter(0, Filters.BiquadFilter)
+			Core.audio.musicBus.setFilter(0, Filters.BiquadFilter())
 		}else{
 			Core.audio.musicBus.setFilter(0, null)
 		}
