@@ -96,13 +96,13 @@ Events.on(ClientLoadEvent, () => {
 	}
 
 	Events.on(WaveEvent, e => Time.run(Math.random()*(15-8)+8 * 60, () => { //on boss
-        let boss = Vars.state.rules.spawns.contains(group => group.getSpawned(state.wave - 2) > 0 && group.effect == StatusEffects.boss);
+        	let boss = Vars.state.rules.spawns.contains(group => group.getSpawned(state.wave - 2) > 0 && group.effect == StatusEffects.boss);
 
-        if(boss){
-            stop()
-            play(Music(bossmusics[Math.floor(Math.random()*bossmusics.length)]), Core.settings.getInt("musicvol") / 100)
-        }
-    }));
+        	if(boss){
+        	    stop()
+        	    play(Music(bossmusics[Math.floor(Math.random()*bossmusics.length)]), Core.settings.getInt("musicvol") / 100)
+        	}
+   	}));
 
 	var update = () => {
 		playing = Vars.state.isGame(); // some checks
