@@ -15,6 +15,12 @@ was not found;
 
 boss -> plays if boss has spawned;
 
+waves -> plays if wave spawned and it not have boss
+
+editor -> plays in editor
+
+menu -> plays in menu
+
 # TODO
 waves music(/wawes)
 
