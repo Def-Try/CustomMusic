@@ -22,8 +22,5 @@ editor -> plays in editor
 menu -> plays in menu
 
 # TODO
-waves music(/wawes)
-
-editor and menu music(/editor,/menu)
 
 some other stuff like code cleanup
