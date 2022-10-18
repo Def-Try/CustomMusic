@@ -14,6 +14,13 @@ var boss = Seq()
 var waves = Seq()
 
 Events.on(ClientLoadEvent, () => {
+
+	if(Vars.mods.getMod("custommusic").file.path().endsWith(".zip")){
+		Vars.ui.showErrorMessage("Please, unzip custom music mod in order for it to work properly.")
+		Log.err("[CM]Mod is zipped, cannot load music")
+		return
+	}
+
 	Log.info("[CM]Started processing music...")
 	var processMusic = (path) => {
 		let array = Seq()
