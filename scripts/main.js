@@ -15,24 +15,27 @@ var waves = Seq()
 
 Events.on(ClientLoadEvent, () => {
 	Log.info("[CM]Started processing music...")
-	var processMusic = (path, array) => {
+	var processMusic = (path) => {
+		let array = Seq()
 		let files = Core.files.get(path, Files.FileType.absolute).seq();
 		for(let i = 0; i < files.size; i++) array.add(files.get(i));
 		Log.info("[CM]Loaded music from " + path)
+		return array
 	}
 
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/sandbox", sandbox);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/attack", attack);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/survival", survival);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/pvp", pvp);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/general", general);
+	sandbox = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/sandbox");
+	attack = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/attack");
+	survival = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/survival");
+	pvp = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/pvp");
+	general = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/general");
 
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/menu", menu);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/editor", editor);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/planet", planet);
-	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/boss", boss);
+	menu = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/menu");
+	editor = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/editor");
+	planet = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/planet",);
+	boss = processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/boss");
 
 	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/waves", waves);
+
 	Log.info("[CM]Defining functions...")
 	var play = (music) => {
 		if (isplaying()) return false;
