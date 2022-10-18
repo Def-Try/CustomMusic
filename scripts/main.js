@@ -15,7 +15,7 @@ var waves = []
 
 Events.on(ClientLoadEvent, () => {
 	var processMusic = (path, array) => {
-		let files = Fi(path).seq();
+		let files = Core.files.get(path, Files.FileType.local).seq();
 		for(let i = 0; i < files.size; i++) array.splice(0,0,files.get(i));
 	}
 
