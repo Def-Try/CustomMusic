@@ -14,10 +14,11 @@ var boss = Seq()
 var waves = Seq()
 
 Events.on(ClientLoadEvent, () => {
+	Log.info("[CM]Started processing music...")
 	var processMusic = (path, array) => {
 		let files = Core.files.get(path, Files.FileType.absolute).seq();
-		for(let i = 0; i < files.size; i++){array.add(files.get(i));
-		Log.info("[CUSTOM MUSIC]Loaded music from " + path)
+		for(let i = 0; i < files.size; i++) array.add(files.get(i));
+		Log.info("[CM]Loaded music from " + path)
 	}
 
 	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/sandbox", sandbox);
@@ -32,7 +33,7 @@ Events.on(ClientLoadEvent, () => {
 	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/boss", boss);
 
 	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/waves", waves);
-
+	Log.info("[CM]Defining functions...")
 	var play = (music) => {
 		if (isplaying()) return false;
 		nowplayingFi = music
@@ -56,7 +57,7 @@ Events.on(ClientLoadEvent, () => {
 	}
 	var isplaying = () => {
 
-		return nowplaying && nowplaying.isPlaying() ? true : false;
+		return nowplaying && nowplaying.isPlaying()
 	}
 	var fade = (time) => {
 		let i = 0;
@@ -88,11 +89,17 @@ Events.on(ClientLoadEvent, () => {
 	}
 	var playRandom = (musicarray) => {
 
-		if (musicarray.size != 0) play(musicarray.get(Math.floor(Math.random()*musicarray.length+1)));
+		if (musicarray.size != 0) {
+		    play(
+		        musicarray.get(
+		            Math.floor(Math.random()*musicarray.size+1)
+		            )
+		        )
+		}
 	}
 	var musicIsGamemodes = (musicarray) => {
 
-		return musicarray.includes(nowplayingFi);
+		return musicarray.toArray().includes(nowplayingFi);
 	}
 	var tryResume = () => {
 		let attempts = 0;
@@ -102,11 +109,11 @@ Events.on(ClientLoadEvent, () => {
 		}
 	}
 	var musicCheck = (musicarray) => {
-		if(boss[0] != null){
+		if(boss.size != 0){
 			Musics.boss1.stop();
 			Musics.boss2.stop();
 		}
-		if(musicarray[0] != null){
+		if(musicarray.size != 0){
 			Musics.game1.stop();
 			Musics.game2.stop();
 			Musics.game3.stop();
@@ -118,11 +125,12 @@ Events.on(ClientLoadEvent, () => {
 			Musics.game9.stop();
 			Musics.fine.stop();
 		}
-		if(editor[0] != null) Musics.editor.stop();
-		if(menu[0] != null) Musics.menu.stop();
-		if(planet[0] != null) Musics.planet.stop();
+		if(editor.size != 0) Musics.editor.stop();
+		if(menu.size != 0) Musics.menu.stop();
+		if(planet.size != 0) Musics.planet.stop();
 	}
 /*
+	Log.info("[CM]Wave event handler register")
 	Events.on(WaveEvent, (e) => { //on wave
 		if(waves[0] != null){
 			fade(5)
@@ -158,7 +166,9 @@ Events.on(ClientLoadEvent, () => {
 			playRandom(musicarray);
 		}
 	}
+	Log.info("[CM]Running update task")
 	Timer.schedule(() => {
 	    update()
 	}, 0, 0.02);
+	Log.info("[CM]Successfully loaded!")
 });
