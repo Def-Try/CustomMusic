@@ -1,3 +1,7 @@
+ATTENTION! Download this mod manually, if it doesnt
+download from mod browser. This can be effect of 
+example music that weights too much.
+
 # CustomMusic
 Mindustry mod, that adds ability to change
 your music, even make it to play in 
@@ -15,7 +19,7 @@ was not found;
 
 boss -> plays if boss has spawned;
 
-waves -> plays if wave spawned and it not have boss
+waves -> plays if wave spawned and it does not have boss
 
 editor -> plays in editor
 
