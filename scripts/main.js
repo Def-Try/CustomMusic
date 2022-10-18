@@ -2,21 +2,22 @@ var nowplaying = null;
 var nowplayingFi = null;
 var nowposition = 0;
 
-var sandbox = []
-var survival = []
-var attack = []
-var pvp = []
-var general = []
-var menu = []
-var editor = []
-var planet = []
-var boss = []
-var waves = []
+var sandbox = Seq()
+var survival = Seq()
+var attack = Seq()
+var pvp = Seq()
+var general = Seq()
+var menu = Seq()
+var editor = Seq()
+var planet = Seq()
+var boss = Seq()
+var waves = Seq()
 
 Events.on(ClientLoadEvent, () => {
 	var processMusic = (path, array) => {
-		let files = Core.files.get(path, Files.FileType.local).seq();
-		for(let i = 0; i < files.size; i++) array.splice(0,0,files.get(i));
+		let files = Core.files.get(path, Files.FileType.absolute).seq();
+		for(let i = 0; i < files.size; i++){array.add(files.get(i));
+		Log.info("[CUSTOM MUSIC]Loaded music from " + path)
 	}
 
 	processMusic(Vars.mods.getMod("custommusic").file.path() + "/music/sandbox", sandbox);
@@ -87,7 +88,7 @@ Events.on(ClientLoadEvent, () => {
 	}
 	var playRandom = (musicarray) => {
 
-		if (musicarray[0] != null) play(musicarray[Math.floor(Math.random()*musicarray.length+1)]);
+		if (musicarray.size != 0) play(musicarray.get(Math.floor(Math.random()*musicarray.length+1)));
 	}
 	var musicIsGamemodes = (musicarray) => {
 
@@ -160,4 +161,4 @@ Events.on(ClientLoadEvent, () => {
 	Timer.schedule(() => {
 	    update()
 	}, 0, 0.02);
-})
+});
