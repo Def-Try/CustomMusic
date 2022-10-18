@@ -114,8 +114,8 @@ Events.on(ClientLoadEvent, () => {
 	var tryResume = () => {
 		let attempts = 0;
 		while(attempts < 3){
-			nowplayingMusic.setPosition(nowposition);
-			nowplayingMusic.play();
+			nowplaying.setPosition(nowposition);
+			nowplaying.play();
 		}
 	}
 	var musicCheck = (musicarray) => {
